@@ -11,7 +11,7 @@ class SignUpModel(models.Model):
   email_mod = models.EmailField(max_length=255)
   name_mod = models.CharField(max_length=120)
   username_mod = models.CharField(max_length=120)
-  password_mod = models.CharField(max_length=40)
+  password_mod = models.CharField(max_length=255)
   created_on = models.DateTimeField(auto_now_add=True)
   updated_on = models.DateTimeField(auto_now=True)
 
