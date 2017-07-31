@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feeds</title>
+</head>
+<body>
+    {% for post in posts_form %}
+        <h3>
+          Posted by: {{ post.user.username_mod }}
+        </h3>
+        <img src="{{ post.image_url }}">
+        <span>
+          {{ post.caption }}
+        </span>
+    {% endfor %}
+</body>
+</html>

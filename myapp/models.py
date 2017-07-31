@@ -27,5 +27,12 @@ class SessionToken(models.Model):
     # uuid.uuid4 generates a random alphanumeric string which is perfect for a session token.
     self.session_token = uuid.uuid4()
 
+class PostModel(models.Model):
+  user = models.ForeignKey(SignUpModel)
+  image = models.FileField(upload_to='user_posts')
+  image_url = models.CharField(max_length=255)
+  caption = models.CharField(max_length=255)
+  created_on = models.DateTimeField(auto_now_add=True)
+  updated_on = models.DateTimeField(auto_now=True)
 
 
