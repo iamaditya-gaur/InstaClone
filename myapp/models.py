@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# TODO add comments to the code before final submission
 from __future__ import unicode_literals
 
 from django.db import models
@@ -34,5 +35,28 @@ class PostModel(models.Model):
   caption = models.CharField(max_length=255)
   created_on = models.DateTimeField(auto_now_add=True)
   updated_on = models.DateTimeField(auto_now=True)
+  has_liked = False
+
+  @property
+  def like_count(self):
+    return len(LikeModel.objects.filter(post_id=self))
+
+  @property
+  def comment_cout(self):
+    return CommentModel.objects.filter(post_id=self).order_by('created_on')
+
+class LikeModel(models.Model):
+  user = models.ForeignKey(SignUpModel)
+  post_id = models.ForeignKey(PostModel)
+  created_on = models.DateTimeField(auto_now_add=True)
+  updated_on = models.DateTimeField(auto_now=True)
+
+class CommentModel(models.Model):
+  user = models.ForeignKey(SignUpModel)
+  post_id = models.ForeignKey(PostModel)
+  comment_text = models.CharField(max_length=555)
+  created_on = models.DateTimeField(auto_now_add=True)
+  updated_on = models.DateTimeField(auto_now=True)
+
 
 
